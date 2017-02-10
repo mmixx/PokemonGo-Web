@@ -51,7 +51,7 @@ var events = {
   path_lap_end:                      'green',
   pokemon_appeared:                  'yellow',
   pokemon_capture_failed:            'red',
-  pokemon_caught:                    'blue',
+  pokemon_caught:                    'lightblue',
   pokemon_evolved:                   'green',
   pokemon_fled:                      'red',
   pokemon_inventory_full:            'red',
@@ -590,7 +590,7 @@ var mapView = {
         break;
       case 4:
         var pkmnTotal = self.user_data[self.settings.users[user_id].username].pokedex.length;
-        $('#subtitle').html('Pokedex ' + pkmnTotal + ' / 151');
+        $('#subtitle').html('Pokedex ' + pkmnTotal + ' / 251');
 
         var sortButtons = '<div class="pokedex-sort chips" data-user-id="' + user_id + '">Sort: ';
         sortButtons += '<a class="chip selected bot-' + user_id + '" href="#" data-sort="id">ID</a>';
@@ -924,7 +924,7 @@ var mapView = {
         "type2": pkmTypeII,
         "weakness": pkmWeakness,
         "favorite": pkmFavorite,
-        "date_captured": pkmDateCaptured.customFormat( "#MM#/#DD#/#YYYY#" )
+        "date_captured": pkmDateCaptured.customFormat( "#MM#/#DD#/#YYYY# #hh#:#mm#" )
       });
     }
     switch ($(".pokemon-sort a.selected").data("sort")) {
@@ -1047,7 +1047,7 @@ var mapView = {
         '<br/><b>IV: </b>' + (pkmnIV >= 0.8 ? '<span style="color: #039be5">' + pkmnIV + '</span>' : pkmnIV) +
         '<br/><b>A/D/S: </b>' + pkmnIVA + '/' + pkmnIVD + '/' + pkmnIVS +
         '<br><b>Candy: </b>' + candyNum +
-        '<br><b>Date Captured: </b>' + pkmnDateCaptured +
+        '<br>' + pkmnDateCaptured +
         '<br><span style="background-color: #dadada; display: block; margin: 0 5px 5px; padding-bottom: 2px;"><b>Moves:</b><br>' +
         '<span style="cursor: pointer;" class="tooltipped" data-html="true" data-position="right" data-tooltip="<b>Type:</b> ' + self.getType(self.moveList[move1ID].type) + '<br><b>Damage:</b> ' + self.moveList[move1ID].damage;
       if (move1STAB != '') {
@@ -1167,7 +1167,7 @@ var mapView = {
     }
     var filtered = 0,
       filter = $(".pokedex-filter a.selected").data("filter"),
-      pkmnTotal = 151;
+      pkmnTotal = 251;
     if ($(".pokedex-filter a.selected").length === 0){
         pkmnTotal = self.user_data[self.settings.users[user_id].username].stats[0].inventory_item_data.player_stats.unique_pokedex_entries;
     }
@@ -1207,7 +1207,7 @@ var mapView = {
       return (nth % 4 === 0) ? '</div></div><div class="row"><div' : match;
     });
     $('#subcontent').html(out);
-    $('#subtitle').html('Pokedex ' + (pkmnTotal - filtered) + ' / 151');
+    $('#subtitle').html('Pokedex ' + (pkmnTotal - filtered) + ' / 251');
   },
   trainerFunc: function(data, user_index) {
     var self = mapView,
